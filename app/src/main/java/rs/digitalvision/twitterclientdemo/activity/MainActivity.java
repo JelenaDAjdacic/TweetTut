@@ -294,11 +294,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.sign_out:
-                prefs.edit().remove("user_token").apply();
-                prefs.edit().remove("user_secret").apply();
-                Intent mainIntent = new Intent(this,MainActivity.class);
-                mainIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP );
-                startActivity(mainIntent);
 
             default:
                 return super.onOptionsItemSelected(item);
