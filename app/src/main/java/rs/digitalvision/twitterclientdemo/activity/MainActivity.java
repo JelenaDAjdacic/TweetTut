@@ -1,7 +1,6 @@
-package rs.digitalvision.twitterclientdemo;
+package rs.digitalvision.twitterclientdemo.activity;
 
 import android.content.BroadcastReceiver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -16,21 +15,19 @@ import android.provider.BaseColumns;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
-import java.util.List;
-
-import twitter4j.Status;
+import rs.digitalvision.twitterclientdemo.R;
+import rs.digitalvision.twitterclientdemo.adapter.UpdateAdapter;
+import rs.digitalvision.twitterclientdemo.db.DataHelper;
+import rs.digitalvision.twitterclientdemo.service.TimelineService;
 import twitter4j.Twitter;
 import twitter4j.TwitterException;
 import twitter4j.TwitterFactory;
 import twitter4j.auth.AccessToken;
 import twitter4j.auth.RequestToken;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationBuilder;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private String TAG = "MainActivity";
@@ -282,5 +279,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Log.e(TAG, "unable to stop Service or receiver");
         }
     }
-    
+
 }

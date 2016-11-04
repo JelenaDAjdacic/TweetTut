@@ -1,4 +1,4 @@
-package rs.digitalvision.twitterclientdemo;
+package rs.digitalvision.twitterclientdemo.adapter;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,32 +12,22 @@ import com.android.volley.toolbox.NetworkImageView;
 
 import java.net.URL;
 
-/**
- * Created by 1 on 11/4/2016.
- */
+import rs.digitalvision.twitterclientdemo.R;
+import rs.digitalvision.twitterclientdemo.network.VolleySingleton;
+
 
 public class UpdateAdapter extends SimpleCursorAdapter {
-    /**
-     * twitter developer key
-     */
-    public final static String TWIT_KEY = "jJC29MJuuCfJKFVrvn0sxegxs";//alter
-    /**
-     * twitter developer secret
-     */
-    public final static String TWIT_SECRET = "PpCm9xQvvv00xCn3kvTmKz6KoHtYU01RohhYPFy8XW1TlbF6l0";//alter
 
     /**
      * strings representing database column names to map to views
      */
-    static final String[] from = {"update_text", "user_screen",
+    private static final String[] from = {"update_text", "user_screen",
             "update_time", "user_img"};
     /**
      * view item IDs for mapping database record values to
      */
-    static final int[] to = {R.id.updateText, R.id.userScreen,
+    private static final int[] to = {R.id.updateText, R.id.userScreen,
             R.id.updateTime, R.id.userImg};
-
-    private String LOG_TAG = "UpdateAdapter";
 
     private Context mContext;
 
@@ -48,7 +38,7 @@ public class UpdateAdapter extends SimpleCursorAdapter {
      * @param c
      */
     public UpdateAdapter(Context context, Cursor c) {
-        super(context, R.layout.update, c, from, to);
+        super(context, R.layout.update, c, from, to, 1);
         mContext = context;
     }
 
@@ -68,6 +58,7 @@ public class UpdateAdapter extends SimpleCursorAdapter {
             NetworkImageView profPic = (NetworkImageView) row.findViewById(R.id.userImg);
             profPic.setImageUrl(cursor.getString(cursor.getColumnIndex("user_img")), VolleySingleton.getsInstance(mContext).getImageLoader());
         } catch (Exception te) {
+            String LOG_TAG = "UpdateAdapter";
             Log.e(LOG_TAG, te.getMessage());
         }
 

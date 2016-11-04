@@ -1,4 +1,4 @@
-package rs.digitalvision.twitterclientdemo;
+package rs.digitalvision.twitterclientdemo.db;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -9,9 +9,6 @@ import android.util.Log;
 
 import twitter4j.Status;
 
-/**
- * Created by 1 on 11/4/2016.
- */
 
 public class DataHelper extends SQLiteOpenHelper {
     /**
@@ -55,7 +52,7 @@ public class DataHelper extends SQLiteOpenHelper {
      *
      * @param context
      */
-    DataHelper(Context context) {
+    public DataHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

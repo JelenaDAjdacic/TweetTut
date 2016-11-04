@@ -1,4 +1,4 @@
-package rs.digitalvision.twitterclientdemo;
+package rs.digitalvision.twitterclientdemo.network;
 
 import android.content.Context;
 import android.graphics.Bitmap;

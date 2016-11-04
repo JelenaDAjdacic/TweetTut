@@ -1,4 +1,4 @@
-package rs.digitalvision.twitterclientdemo;
+package rs.digitalvision.twitterclientdemo.service;
 
 import android.app.Service;
 import android.content.ContentValues;
@@ -12,6 +12,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import rs.digitalvision.twitterclientdemo.db.DataHelper;
 import twitter4j.Twitter;
 import twitter4j.TwitterFactory;
 import twitter4j.conf.Configuration;
