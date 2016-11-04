@@ -1,7 +1,9 @@
 package rs.digitalvision.twitterclientdemo.adapter;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.View;
@@ -48,6 +50,9 @@ public class UpdateAdapter extends SimpleCursorAdapter {
     @Override
     public void bindView(View row, Context context, Cursor cursor) {
         super.bindView(row, context, cursor);
+        //get the preferences for the app
+        SharedPreferences prefs = context.getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
+
 
         try {
             //get profile image
@@ -68,6 +73,14 @@ public class UpdateAdapter extends SimpleCursorAdapter {
         TextView textCreatedAt = (TextView) row.findViewById(R.id.updateTime);
         //adjust the way the time is displayed to make it human-readable
         textCreatedAt.setText(DateUtils.getRelativeTimeSpanString(createdAt) + " ");
+        //mark new messages
+        if (prefs.getLong("latest", 0) < createdAt) {
+
+            textCreatedAt.setTextColor(Color.RED);
+
+        }
+
+
     }
 
 

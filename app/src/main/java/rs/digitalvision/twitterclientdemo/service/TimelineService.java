@@ -140,6 +140,7 @@ public class TimelineService extends Service {
 
         protected Void doInBackground(Void... str) {
             boolean statusChanges = false;
+
             try {
                 Log.e(LOG_TAG, "inside doInBackground...");
                 //fetch timeline
@@ -151,6 +152,7 @@ public class TimelineService extends Service {
                 //iterate through new status updates
                 for (twitter4j.Status statusUpdate : homeTimeline) {
                     //call the getValues method of the data helper class, passing the new updates
+
                     Log.e(LOG_TAG, "looping...");
                     ContentValues timelineValues = DataHelper.getValues(statusUpdate);
                     //if the database already contains the updates they will not be inserted

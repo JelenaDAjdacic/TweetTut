@@ -15,6 +15,9 @@ import android.provider.BaseColumns;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -95,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
 
         //get the preferences for the app
-        prefs = getSharedPreferences("myPrefs", 0);
+        prefs = getSharedPreferences("myPrefs", Context.MODE_PRIVATE);
 
         //find out if the user preferences are set
         if (prefs.getString("user_token", null) == null) {
@@ -174,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //query the database, most recent tweets first
             timelineCursor = timelineDB.query
                     ("home", null, null, null, null, null, "update_time DESC");
+
             //manage the updates using a cursor
             startManagingCursor(timelineCursor);
             //instantiate adapter
@@ -277,6 +281,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             timelineDB.close();
         } catch (Exception se) {
             Log.e(TAG, "unable to stop Service or receiver");
+        }
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.sign_out:
+                prefs.edit().remove("user_token").apply();
+                prefs.edit().remove("user_secret").apply();
+                Intent mainIntent = new Intent(this,MainActivity.class);
+                mainIntent.addFlags( Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP );
+                startActivity(mainIntent);
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 

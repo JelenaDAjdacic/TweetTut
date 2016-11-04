@@ -94,7 +94,9 @@ public class DataHelper extends SQLiteOpenHelper {
             homeValues.put(UPDATE_COL, status.getText());
             homeValues.put(USER_COL, status.getUser().getScreenName());
             homeValues.put(TIME_COL, status.getCreatedAt().getTime());
-            homeValues.put(USER_IMG, status.getUser().getProfileImageURL().toString());
+            homeValues.put(USER_IMG, status.getUser().getProfileImageURL());
+
+
         } catch (Exception te) {
             Log.e("NiceDataHelper", te.getMessage());
         }
